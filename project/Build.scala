@@ -7,7 +7,9 @@ object Cats extends Build {
     id = "cats",
     base = file("."),
     settings = Project.defaultSettings ++ sharedSettings).settings(
-    name := "cats"
+    name := "cats",
+    mainClass in(Compile, run) := Some("com.lm.petstore.HttpServer")
+
   )
 
   val sharedSettings = Seq(
