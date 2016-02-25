@@ -1,8 +1,11 @@
-package com.lm.cats;
+package com.lm.petstore;
 
 import com.twitter.finagle.Http;
 import com.twitter.finagle.ListeningServer;
+import com.twitter.finagle.Service;
 import com.twitter.finagle.http.HttpMuxer;
+import com.twitter.finagle.http.Request;
+import com.twitter.finagle.http.Response;
 import com.twitter.util.Await;
 
 import java.net.InetAddress;
@@ -23,9 +26,11 @@ public class HttpServer {
 
     private static void runServer() throws InterruptedException, com.twitter.util.TimeoutException {
         LoggingFilter accessLog = new LoggingFilter();
+        NullToNotFound nullFilter = new NullToNotFound();
+        HandleErrors errorsFilter = new HandleErrors();
+        Service<Request, Response> service = accessLog.andThen(nullFilter).andThen(errorsFilter).andThen(router());
 
-        ListeningServer server = Http.server()
-                .serve(addr, accessLog.andThen(router()));
+        ListeningServer server = Http.server().serve(addr, service);
 
         Await.ready(server);
     }
