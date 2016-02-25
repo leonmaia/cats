@@ -9,6 +9,9 @@ import com.twitter.util.Future;
 import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.handler.codec.http.HttpResponseStatus;
 
+/**
+ * A simple Finagle that intercepts Exceptions and converts them to a more comprehensible HTTP Response.
+ */
 public final class HandleErrors extends SimpleFilter<Request, Response> {
 
     @Override

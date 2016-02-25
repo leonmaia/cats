@@ -10,6 +10,9 @@ import com.twitter.util.Future;
 
 import java.util.Objects;
 
+/**
+ * A simple Finagle filter that handles Responses with null and convert them to NotFound Responses.
+ */
 public final class NullToNotFound extends SimpleFilter<Request, Response> {
 
     @Override
