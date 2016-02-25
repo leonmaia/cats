@@ -8,7 +8,7 @@ object Cats extends Build {
     base = file("."),
     settings = Project.defaultSettings ++ sharedSettings).settings(
     name := "cats",
-    mainClass in(Compile, run) := Some("com.lm.petstore.HttpServer")
+    mainClass in(Compile, run) := Some("com.lm.cats.HttpServer")
 
   )
 
@@ -22,7 +22,9 @@ object Cats extends Build {
   )
 
   lazy val coreDependencies = Seq(
-    "com.twitter" %% "twitter-server" % "1.18.0",
-    "com.fasterxml.jackson.core" % "jackson-core" % "2.7.1"
+    "com.twitter" %% "finagle-http" % "6.33.0",
+    "com.fasterxml.jackson.core" % "jackson-core" % "2.7.1",
+    "com.fasterxml.jackson.core" % "jackson-databind" % "2.7.1",
+    "com.fasterxml.jackson.core" % "jackson-annotations" % "2.7.1"
   )
 }

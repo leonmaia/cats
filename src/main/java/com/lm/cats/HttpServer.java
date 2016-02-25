@@ -1,4 +1,4 @@
-package com.lm.petstore;
+package com.lm.cats;
 
 import com.twitter.finagle.Http;
 import com.twitter.finagle.ListeningServer;
@@ -16,15 +16,6 @@ public class HttpServer {
     static InetSocketAddress addr = new InetSocketAddress(InetAddress.getLoopbackAddress(), 8888);
 
     public static void main(String[] args) throws Exception {
-        runServer();
-    }
-
-    private static HttpMuxer router() {
-        return new HttpMuxer()
-                .withHandler("/echo", Handlers.echoHandler());
-    }
-
-    private static void runServer() throws InterruptedException, com.twitter.util.TimeoutException {
         LoggingFilter accessLog = new LoggingFilter();
         NullToNotFound nullFilter = new NullToNotFound();
         HandleErrors errorsFilter = new HandleErrors();
@@ -33,6 +24,11 @@ public class HttpServer {
         ListeningServer server = Http.server().serve(addr, service);
 
         Await.ready(server);
+    }
+
+    private static HttpMuxer router() {
+        return new HttpMuxer()
+                .withHandler("/cat", Handlers.echoHandler());
     }
 }
 

@@ -1,14 +1,12 @@
-package com.lm.petstore;
+package com.lm.cats;
 
 import com.twitter.finagle.Service;
 import com.twitter.finagle.SimpleFilter;
 import com.twitter.finagle.http.Request;
 import com.twitter.finagle.http.Response;
 import com.twitter.finagle.http.Status;
-import com.twitter.util.Duration;
 import com.twitter.util.Function;
 import com.twitter.util.Future;
-import com.twitter.util.Stopwatch$;
 
 import java.util.Objects;
 

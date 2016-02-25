@@ -1,4 +1,4 @@
-package com.lm.petstore;
+package com.lm.cats;
 
 import com.twitter.finagle.Service;
 import com.twitter.finagle.SimpleFilter;
@@ -18,7 +18,7 @@ public final class LoggingFilter extends SimpleFilter<Request, Response> {
         return service.apply(req).map(new Function<Response, Response>() {
             @Override
             public Response apply(Response resp) {
-                System.out.println("Took: " + e.inMilliseconds() + "ms");
+                System.out.println("Took: " + e.inMilliseconds() + "ms to complete.");
 
                 return resp;
             }
